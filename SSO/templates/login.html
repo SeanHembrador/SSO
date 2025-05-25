@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Physical Plant Office - Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+        .login-container {
+            margin: 100px auto;
+            width: 350px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        input, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .google-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="{{ url_for('static', filename='your-logo.png') }}" alt="Logo" width="100">
+    <h2>Physical Plant Office</h2>
+
+    <div class="login-container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul style="color:red;">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action="/login" method="POST">
+            <label>Username:</label>
+            <input type="text" name="username" placeholder="Enter your Username" required>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Enter your Password" required>
+            <button type="submit">Log In</button>
+        </form>
+
+        <p>OR</p>
+
+        <div class="google-btn">
+            <a href="/oauth2/authorization/google">
+                <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png"
+                     alt="Sign in with Google">
+            </a>
+        </div>
+
+        <p>New to this portal? <a href="/signup">Sign up now</a></p>
+    </div>
+
+</body>
+</html>
